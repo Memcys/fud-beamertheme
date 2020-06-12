@@ -1,9 +1,9 @@
 % Copyright (C) 2018-2020 Pasquale Claudio Africa and the LaTeX community.
 % A full list of contributors can be found at
 %
-%     https://github.com/elauksap/focus-beamertheme
+%     https://github.com/Memcys/fud-beamertheme
 % 
-% This file is part of beamerthemefocus.
+% This file is based on beamerouterthemefocus.sty with several modifications (see lines followed by # !).
 % 
 % beamerthemefocus is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -31,11 +31,17 @@
    	#1%
    	\fi
 }
+% ! footline logo
+\newcommand*{\footrightlogo}{
+    \includegraphics[height=.75\focus@pbar@height,keepaspectratio]
+    {UCAS-logo-abbr}
+    }
 \pdfstringdefDisableCommands{\let\translate\bkmtranslate}
 \RequirePackage{bookmark}
 
 \RequirePackage{etoolbox} % \BeforeBeginEnvironment.
 \RequirePackage{tikz}
+\RequirePackage{calc}   % ! For \widthof
 
 \newcounter{realframenumber}
 
@@ -75,8 +81,9 @@
         \settowidth{\focus@pbar@leftoffset}{1}%
         \addtolength{\focus@pbar@leftoffset}{1.5em}%
         %
-        \settowidth{\focus@pbar@rightoffset}{\inserttotalframenumber}%
-        \addtolength{\focus@pbar@rightoffset}{1.5em}%
+        \settowidth{\focus@pbar@rightoffset}{\inserttotalframenumber\footrightlogo}%
+        % \addtolength{\focus@pbar@rightoffset}{1.5em}%
+        \addtolength{\focus@pbar@rightoffset}{\widthof{\footrightlogo}-1.5em}%
         %
         % If not title page.
         \ifnum\value{realframenumber}>0%
@@ -89,10 +96,12 @@
                     \fill[footline.bg] (0,0) rectangle ++(\the\focus@pbar@leftoffset,\the\focus@pbar@height);
                     
                     \fill[footline.bg] (\the\focus@pbar@leftoffset,0) rectangle ++(\focus@pbar@progress pt,\the\focus@pbar@height)
-                                       ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=east, text=footline.fg] {\strut\insertframenumber};
-                    
+                                       ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=east, text=footline.fg] {\strut\insertframenumber};                    
+
                     \fill[footline.bg] (\paperwidth,0) rectangle ++(-\the\focus@pbar@rightoffset,\the\focus@pbar@height)
                                        ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=west, text=footline.fg] {\strut\inserttotalframenumber};
+                    % ! Insert footline logo
+                    \node[anchor=west] at ({\paperwidth-0.7*\the\focus@pbar@rightoffset},{0.5*\the\focus@pbar@height}) {\footrightlogo};
                 \end{tikzpicture}%
             \else%
                 \begin{tikzpicture}[inner xsep=0.5em, inner ysep=0.5ex]
@@ -102,6 +111,8 @@
                     \node[anchor=east, footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\insertframenumber};
                     \node[footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut/};
                     \node[anchor=west, footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\inserttotalframenumber};
+                    % ! Insert footline logo
+                    \node[anchor=west] at ({\paperwidth-0.7*\the\focus@pbar@rightoffset},{0.5*\the\focus@pbar@height}) {\footrightlogo};
                 \end{tikzpicture}%
             \fi%
         \fi%

@@ -1,9 +1,9 @@
 % Copyright (C) 2018-2020 Pasquale Claudio Africa and the LaTeX community.
 % A full list of contributors can be found at
 %
-%     https://github.com/elauksap/focus-beamertheme
+%     https://github.com/Memcys/fud-beamertheme
 % 
-% This file is part of beamerthemefocus.
+% This file is part of beamerthemefud based on beamerthemefocus.
 % 
 % beamerthemefocus is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -19,14 +19,13 @@
 % along with beamerthemefocus. If not, see <http://www.gnu.org/licenses/>.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemefocus}[2020/04/15 v2.6 Focus Beamer theme]
+\ProvidesPackage{beamerthemefud}[2020/06/12 v2.6 FUDefence Beamer theme]
 
 \mode<presentation>
 
-
 % THEME OPTIONS. ---------------------------------------------------------------
 \DeclareOptionBeamer{numbering}{%
-    \PassOptionsToPackage{numbering=#1}{beamerouterthemefocus}
+    \PassOptionsToPackage{numbering=#1}{beamerouterthemefud}
 }
 
 \newif\if@focus@loadfirafonts
@@ -34,7 +33,6 @@
 
 \DeclareOptionBeamer{nofirafonts}{\@focus@loadfirafontsfalse}
 \ProcessOptionsBeamer
-
 
 % LOAD EXTERNAL PACKAGES. ------------------------------------------------------
 \if@focus@loadfirafonts
@@ -47,13 +45,12 @@
     \RequirePackage{FiraMono}
 \fi
 
-\usecolortheme{focus}
-\usefonttheme{focus}
-\useinnertheme{focus}
-\useoutertheme{focus}
+\usecolortheme{fud}
+\usefonttheme{fud}
+\useinnertheme{fud}
+\useoutertheme{fud}
 
 \setbeamertemplate{navigation symbols}{}
-
 
 % SET MARGINS. -----------------------------------------------------------------
 \setbeamersize{text margin left=0.75cm, text margin right=0.75cm}

@@ -1,13 +1,19 @@
 % Full instructions available at:
-% https://github.com/elauksap/focus-beamertheme
+% https://github.com/elauksap/focus-beamertheme and
+% https://github.com/Memcys/fud-beamertheme
 
-\documentclass{beamer}
-\usetheme{focus}
+\documentclass[x11names]{beamer}
 
-\title{Focus: \\ A Minimalist Beamer Theme}
-\subtitle{Subtitle}
-\author{Author 1\texorpdfstring{\\}{,} Author 2}
-\titlegraphic{\includegraphics[scale=1.25]{focuslogo.pdf}}
+\usetheme[nofirafonts]{fud}
+\usefonttheme{professionalfonts}
+
+\title{FUDefence: \\ A Focus-based Beamer Theme}
+\subtitle{for UCAS Thesis Defence}
+\author{Author}
+\titlegraphic{%
+    \vspace{.05\textheight}
+    \includegraphics[width=.55\textheight]{UCAS-logo-full}%
+}%
 \institute{Institute Name \\ Institute Address}
 \date{dd mm yyyy}
 
@@ -44,7 +50,7 @@
         \vfill
         \texttt{FiraSans} also provides support for mathematical symbols:
         \begin{equation*}
-            e^{i\pi} + 1 = 0.
+            \mathrm{e}^{i \pi} + 1 = 0.
         \end{equation*}
     \end{frame}
 
